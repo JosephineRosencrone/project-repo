@@ -9,6 +9,9 @@ Be creative! do whatever you want!
 """
 
 
+from master_thesis_python_repo.live.screen_capture import screen_capture_test
+
+
 def main():  # pragma: no cover
     """
     The main function executes on commands:
@@ -25,4 +28,5 @@ def main():  # pragma: no cover
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
-    print("This will do something")
+    screen_capture_test()
+    # print("This will do something")
