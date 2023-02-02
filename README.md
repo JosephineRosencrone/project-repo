@@ -68,7 +68,7 @@ This project exists thanks to all the people who contribute.
 
 [MIT](LICENSE) © Victor Ibs Larsen
 
-
+  
 # Python Project Template
 
 A low dependency and really simple to start project template for Python Projects.
