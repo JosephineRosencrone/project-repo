@@ -1,4 +1,4 @@
-"""Entry point for project_name."""
+"""Entry point for master_thesis_python_repo."""
 
 from .cli import main  # pragma: no cover
 
