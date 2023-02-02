@@ -1,3 +1,73 @@
+# master-thesis-python-repo
+
+This repository contains:
+
+1. [The specification](spec.md) for how a standard README should look.
+2. A link to [a linter](https://github.com/RichardLitt/standard-readme-preset) you can use to keep your README maintained ([work in progress](https://github.com/RichardLitt/standard-readme/issues/5)).
+3. A link to [a generator](https://github.com/RichardLitt/generator-standard-readme) you can use to create standard READMEs.
+4. [A badge](#badge) to point to this spec.
+5. [Examples of standard READMEs](example-readmes/) - such as this file you are reading.
+
+Standard Readme is designed for open source libraries. Although it’s [historically](#background) made for Node and npm projects, it also applies to libraries in other languages and package managers.
+
+
+## Table of Contents
+
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [Example](#example)
+- [Maintainers](#maintainers)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Background
+
+What and why?
+
+## Install
+
+This project uses [python](https://www.python.org/) and [GitBash](https://git-scm.com/downloads). Go check them out if you don't have them locally installed.
+
+### Clone repo
+```sh
+$ git clone <repo>
+$ cd <repo_name>
+```
+
+### Create virtual environment and install requirements
+```sh
+$ python -m venv .venv
+$ source .venv/Scripts/activate
+$ pip install -r requirements.txt
+```
+## Usage
+
+To do stuff, you do stuff
+
+```sh
+# Help I don't know!
+```
+
+## Examples
+
+Hey, look at me!
+
+## Maintainers
+
+[@VictorIbs1307](https://github.com/VictorIbs1307).
+
+
+## Contributors
+
+This project exists thanks to all the people who contribute. 
+<a href="https://github.com/VictorIbs1307/master-thesis-python-repo/graphs/contributors"></a>
+
+
+## License
+
+[MIT](LICENSE) © Victor Ibs Larsen
+
 
 # Python Project Template
 
