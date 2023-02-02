@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 import mss
 
-from image_blur import blur_blue_channel
+from helper.image_blur import blur_blue_channel
 
 def nothing(x):
     pass
