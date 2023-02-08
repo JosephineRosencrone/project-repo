@@ -2,6 +2,21 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
+def img_show_color_frequency(img_path: str):
+    # Read the input color image
+    img = cv2.imread(img_path)
+
+    # Split the Blue, Green and Red color channels
+    blue,green,red = cv2.split(img)
+    
+    x = range(0, len(blue.reshape(-1)))
+
+    plt.plot(x, blue.reshape(-1), label = "Blue", color="b")
+    plt.plot(x, green.reshape(-1), label = "Green", color="g")
+    plt.plot(x, red.reshape(-1), label = "Red", color="r")
+    plt.legend()
+    plt.show()
+
     
 def img_show_each_color_channel(img_path: str):
     # Read the input color image
@@ -40,3 +55,5 @@ def show_before_after_img(img_before, img_after):
     axs[1].set_yticks([])
 
     plt.show()
+
+img_show_color_frequency("./master_thesis_python_repo/img/test_img.png")

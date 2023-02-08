@@ -13,11 +13,11 @@ def nothing(x):
 def screen_capture_test():
     with mss.mss() as sct:
         # Part of the screen to capture
-        monitor = {"top": 0, "left": 0, "width": 1920, "height": 1080}
+        monitor = {"top": 0, "left": 0, "width": 800, "height": 800}
         windowName = "OpenCV/Numpy blur"
         
         # Create a black image, a window
-        img = np.zeros((1920,1080,3), np.uint8)
+        img = np.zeros((800,800,3), np.uint8)
         cv2.namedWindow(windowName)
         
         # Create UI elements
