@@ -12,7 +12,7 @@ def set_pixel(img, w, x, y, rgb=(0, 0, 0)):
     pos = (x * w + y) * 3
     if pos >= len(img):
         return img  # avoid setting pixel outside of frame
-    img[pos : pos + 3] = rgb
+    img[pos : pos + 3] = rgb  # noqa: E203
     return img
 
 

@@ -23,11 +23,9 @@ def split_and_blur_color_channel(
 def blur_color_channel(
     color_channel, kernal_size=(5, 5), blur_method="GaussianBlur"
 ):
-    # match blur_method:
-    #     case "GaussianBlur":
-    #         color_channel_blur = cv2.GaussianBlur(color_channel,kernal_size,0)
-    #     case _:
-    #         color_channel_blur = cv2.blur(color_channel,kernal_size,0)
+    if blur_method == "GaussianBlur":
+        color_channel_blur = cv2.GaussianBlur(color_channel, kernal_size, 0)
+    else:
+        color_channel_blur = cv2.blur(color_channel, kernal_size, 0)
 
-    color_channel_blur = cv2.GaussianBlur(color_channel, kernal_size, 0)
     return color_channel_blur
