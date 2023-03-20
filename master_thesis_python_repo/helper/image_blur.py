@@ -1,9 +1,11 @@
-from ctypes import Array
-import cv2 
+import cv2
 
-def split_and_blur_color_channel(img: Array[float,float,float,float], blur_red=False, blur_green=False, blur_blue=False):
+
+def split_and_blur_color_channel(
+    img, blur_red=False, blur_green=False, blur_blue=False,
+):
     # Split the Red, Green, Blue and alpha color channels
-    red,green,blue,alpha = cv2.split(img)
+    red, green, blue, alpha = cv2.split(img)
 
     # Blur the color channel if specified
     if blur_red:
@@ -14,14 +16,18 @@ def split_and_blur_color_channel(img: Array[float,float,float,float], blur_red=F
         blue = blur_color_channel(blue)
 
     # Create a new image with the blured blue color channel
-    img_blur = cv2.merge([red,green,blue])
+    img_blur = cv2.merge([red, green, blue])
     return img_blur
 
-def blur_color_channel(color_channel: Array[float],kernal_size = (5,5), blur_method="GaussianBlur"):
-    match blur_method:
-        case "GaussianBlur":    
-            color_channel_blur = cv2.GaussianBlur(color_channel,kernal_size,0)
-        case _:
-            color_channel_blur = cv2.blur(color_channel,kernal_size,0)
-            
+
+def blur_color_channel(
+    color_channel, kernal_size=(5, 5), blur_method="GaussianBlur"
+):
+    # match blur_method:
+    #     case "GaussianBlur":
+    #         color_channel_blur = cv2.GaussianBlur(color_channel,kernal_size,0)
+    #     case _:
+    #         color_channel_blur = cv2.blur(color_channel,kernal_size,0)
+
+    color_channel_blur = cv2.GaussianBlur(color_channel, kernal_size, 0)
     return color_channel_blur

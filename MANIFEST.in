@@ -1,5 +1,0 @@
-include LICENSE
-include HISTORY.md
-include Containerfile
-graft tests
-graft master_thesis_python_repo
