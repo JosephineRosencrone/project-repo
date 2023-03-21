@@ -8,20 +8,20 @@ class KernelSetting:
     name: str
     filterType: str
     blurOrSharpenCheckbox: bool
-    kernelSize: str
-    sigma: str
-    sigma2: str
-    timeFiltersApllied: str
+    kernelSize: int
+    sigma: float
+    sigma2: float
+    timeFiltersApllied: int
 
     @staticmethod
     def from_dict(obj: Any) -> "KernelSetting":
         _name = str(obj.get("name"))
         _filterType = str(obj.get("filterType"))
         _blurOrSharpenCheckbox = bool(obj.get("blurOrSharpenCheckbox"))
-        _kernelSize = str(obj.get("kernelSize"))
-        _sigma = str(obj.get("sigma"))
-        _sigma2 = str(obj.get("sigma2"))
-        _timeFiltersApllied = str(obj.get("timeFiltersApllied"))
+        _kernelSize = int(obj.get("kernelSize"))
+        _sigma = float(obj.get("sigma"))
+        _sigma2 = float(obj.get("sigma2"))
+        _timeFiltersApllied = int(obj.get("timeFiltersApllied"))
         return KernelSetting(
             _name,
             _filterType,
@@ -51,8 +51,9 @@ class FilterSettings:
         json_data = json.loads(json_string)
         return FilterSettings.from_dict(json_data)
 
+if __name__ == "__main__":
+    filter_settings = FilterSettings.import_config(
+        file_path=r"C:\Users\voli\Desktop\config.txt"
+    )
+    print(filter_settings.settings)
 
-filter_settings = FilterSettings.import_config(
-    file_path=r"C:\Users\voli\Desktop\config.txt"
-)
-print(filter_settings.settings)
