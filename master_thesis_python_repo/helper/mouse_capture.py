@@ -7,9 +7,13 @@ def set_pixel(img, w, x, y, rgb=(0,0,0)):
     """
     Set a pixel in a, RGB byte array
     """
-    pos = (x*w + y)*3
-    if pos>=len(img):return img # avoid setting pixel outside of frame
-    img[pos:pos+3] = rgb
+
+    img_h, img_w, _ = np.shape(img)
+
+    if x>=img_w or y >= img_w:
+        return img # avoid setting pixel outside of frame
+    img[x][y][0:3] = rgb
+    
     return img
 
 def add_mouse(img, w):
@@ -23,8 +27,7 @@ def add_mouse(img, w):
     return img
 
 
-def get_cursor(hcursor):
-    info = win32gui.GetCursorInfo()
+def get_cursor(hcursor):    
     hdc = win32ui.CreateDCFromHandle(win32gui.GetDC(0))
     hbmp = win32ui.CreateBitmap()
     hbmp.CreateCompatibleBitmap(hdc, 36, 36)

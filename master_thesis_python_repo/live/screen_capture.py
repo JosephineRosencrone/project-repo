@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 # from master_thesis_python_repo.helper.filter import Filter
 from master_thesis_python_repo.helper.filter_config_file import Filter_With_Config
 from master_thesis_python_repo.helper.import_config import FilterSettings
-from master_thesis_python_repo.helper.mouse_test import add_mouse
+from master_thesis_python_repo.helper.mouse_capture import add_mouse
 
 
 class Screen_Capture:
@@ -43,8 +43,10 @@ class Screen_Capture:
             cv2.namedWindow(windowName)
 
             # Create UI element
-            switch = "0 : OFF \n 1 : ON"
-            cv2.createTrackbar(switch, windowName, 0, 1, self.nothing)
+            toggleFilter = "Filter: 0=OFF, 1=ON"
+            toggleMouseBlur = "Mouse blur: 0=OFF, 1=ON"
+            cv2.createTrackbar(toggleFilter, windowName, 0, 1, self.nothing)
+            cv2.createTrackbar(toggleMouseBlur, windowName, 0, 1, self.nothing)
 
           
             # Turn on interactive mode for Matplotlib
@@ -63,16 +65,21 @@ class Screen_Capture:
 
                 # Get raw pixels from the screen, save it to a Numpy array
                 img = np.array(sct.grab(monitor))
-                # img = add_mouse(img, monitor['width'])
-                # Get switch state
-                s = cv2.getTrackbarPos(switch, windowName)
+                
+                # Get toggleFilter and toggleMouseBlur state
+                s = cv2.getTrackbarPos(toggleFilter, windowName)
+                toggleMouseBlur_value = cv2.getTrackbarPos(toggleMouseBlur, windowName)
 
-                # If switch is on use filter, else show un-processed image
+                # If toggleFilter is on use filter, else show un-processed image
                 if s == 1:
-                    img_final = self.filter.apply_to_image(img=img)
+                    if toggleMouseBlur_value == 1:
+                        img_final = self.filter.apply_to_image(img=img, nonBlurRadius=100)
+                    else:    
+                        img_final = self.filter.apply_to_image(img=img)
                 else:
                     img_final = img
 
+                img_final = add_mouse(img_final, monitor['width'])
                 cv2.imshow(windowName, img_final)
 
                 print(f"fps: {1 / (time.time() - last_time)}")
