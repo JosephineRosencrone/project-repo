@@ -28,8 +28,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install project
         run: make install
+        if: matrix.os == 'ubuntu-latest' # Skip this step on Windows
+      - name: Install project on Windows
+        run: make install-win
+        if: matrix.os == 'windows-latest' # Skip this step on Ubuntu
       - name: Run linter
-        run: make lint
+        run: make lin
 
   tests_linux:
     needs: linter

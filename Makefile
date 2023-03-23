@@ -24,6 +24,12 @@ install:          ## Install the project in dev mode.
 	@echo "Don't forget to run 'make virtualenv' if you got errors."
 	$(ENV_PREFIX)pip install -e .[test]
 
+.PHONY: install-win
+install-win:          ## Install the project in dev mode.
+	@if [ "$(USING_POETRY)" ]; then poetry install && exit; fi
+	@echo "Don't forget to run 'make virtualenv' if you got errors."
+	$(ENV_PREFIX)pip install -e .[test,win]
+
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
 	$(ENV_PREFIX)isort master_thesis_python_repo/

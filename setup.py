@@ -42,5 +42,5 @@ setup(
     entry_points={
         "console_scripts": ["master_thesis_python_repo = master_thesis_python_repo.__main__:main"]
     },
-    extras_require={"test": read_requirements("requirements-test.txt")},
+    extras_require={"test": read_requirements("requirements-test.txt"), "win": read_requirements("requirements-win.txt")},
 )
