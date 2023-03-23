@@ -6,4 +6,4 @@
 opencv-python
 matplotlib
 mss
-pywin32==305
+pywin32
