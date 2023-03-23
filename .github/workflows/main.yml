@@ -33,7 +33,7 @@ jobs:
         run: make install-win
         if: matrix.os == 'windows-latest' # Skip this step on Ubuntu
       - name: Run linter
-        run: make lin
+        run: make lint
 
   tests_linux:
     needs: linter
