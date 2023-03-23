@@ -52,10 +52,10 @@ class FilterSettings:
         json_data = json.loads(json_string)
         return FilterSettings.from_dict(json_data)
 
-########## Test for developers ##########
+
+# ___________ Test for developers ___________
 if __name__ == "__main__":
     filter_settings = FilterSettings.import_config(
         file_path=r"C:\Users\voli\Desktop\config.txt"
     )
     print(filter_settings.settings)
-

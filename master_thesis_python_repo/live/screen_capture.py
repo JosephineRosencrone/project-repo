@@ -1,14 +1,15 @@
 import time
+from tkinter import Tk, filedialog
+
 import cv2
 import mss
 import numpy as np
 
-from tkinter import filedialog, Tk
-# from matplotlib import pyplot as plt
-
 from master_thesis_python_repo.helper.filter import Filter_With_Config
 from master_thesis_python_repo.helper.import_config import FilterSettings
 from master_thesis_python_repo.helper.mouse_capture import add_mouse
+
+# from matplotlib import pyplot as plt
 
 
 class Screen_Capture:
@@ -17,13 +18,14 @@ class Screen_Capture:
         self.name = name
         self.screen_width = screen_width
         self.screen_height = screen_height
-        
-        # Ask the user for the config file location, import settings and setup filter
+
+        # Ask the user for the config file location,
+        # import settings and setup filter
         Tk().withdraw()
         file_path = filedialog.askopenfilename()
         filter_settings = FilterSettings.import_config(file_path)
         self.filter = Filter_With_Config(filter_settings=filter_settings)
-    
+
     def run(self):
         with mss.mss() as sct:
             # Define the part of the screen to capture
@@ -45,7 +47,7 @@ class Screen_Capture:
             cv2.createTrackbar(toggleFilter, windowName, 0, 1, self.nothing)
             cv2.createTrackbar(toggleMouseBlur, windowName, 0, 1, self.nothing)
 
-            ########## Plots for developers - Part 1 of 2 ##########
+            # ___________ Plots for developers - Part 1 of 2 ___________
             # Turn on interactive mode for Matplotlib
             # plt.ion()
 
@@ -62,17 +64,23 @@ class Screen_Capture:
 
                 # Get raw pixels from the screen, save it to a Numpy array
                 img = np.array(sct.grab(monitor))
-                
+
                 # Get toggleFilter and toggleMouseBlur state
                 s = cv2.getTrackbarPos(toggleFilter, windowName)
-                toggleMouseBlur_value = cv2.getTrackbarPos(toggleMouseBlur, windowName)
+                toggleMouseBlur_value = cv2.getTrackbarPos(
+                    toggleMouseBlur, windowName
+                )
 
-                # If toggleFilter is on use filter, else show un-processed image
+                # If toggleFilter is on use filter,
+                # else show un-processed image
                 if s == 1:
-                    # If toggleMouseBlur is on don't blur the image in a circle around the mouse cursor, else blur everything
+                    # If toggleMouseBlur is on don't blur the image in a circle
+                    # around the mouse cursor, else blur everything
                     if toggleMouseBlur_value == 1:
-                        img_final = self.filter.apply_to_image(img=img, nonBlurRadius=100)
-                    else:    
+                        img_final = self.filter.apply_to_image(
+                            img=img, nonBlurRadius=100
+                        )
+                    else:
                         img_final = self.filter.apply_to_image(img=img)
                 else:
                     img_final = img
@@ -87,7 +95,7 @@ class Screen_Capture:
                     cv2.destroyAllWindows()
                     break
 
-                ########## Plots for developers - Part 2 of 2 ##########
+                # ___________ Plots for developers - Part 2 of 2 ___________
                 # Get the 10th row of the image
                 # row = img_final[round(len(img_final) / 2), :]
                 # r_array = [inner[0] for inner in row]
@@ -99,7 +107,8 @@ class Screen_Capture:
                 # lineB.set_ydata(b_array)
                 # plt.draw()
                 # plt.pause(0.01)
-    
-    # Is needed for UI elements because we only want to read their values and not run any fucntions
+
+    # Is needed for UI elements because we only want to read
+    # their values and not run any fucntions
     def nothing(self, x):
         pass
