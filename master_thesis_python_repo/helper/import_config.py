@@ -44,6 +44,7 @@ class FilterSettings:
 
     @staticmethod
     def import_config(file_path: str) -> "FilterSettings":
+        # Open and read the file context
         with open(file_path, "r") as file:
             json_string = file.read()
 
@@ -51,6 +52,7 @@ class FilterSettings:
         json_data = json.loads(json_string)
         return FilterSettings.from_dict(json_data)
 
+########## Test for developers ##########
 if __name__ == "__main__":
     filter_settings = FilterSettings.import_config(
         file_path=r"C:\Users\voli\Desktop\config.txt"
